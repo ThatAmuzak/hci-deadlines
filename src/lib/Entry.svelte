@@ -1,5 +1,6 @@
 <script>
  import countdown from 'countdown';
+ import { google, outlook, office365, yahoo, ics } from "calendar-link";
  let { entry } = $props();
 
  let initCountDownStr = entry.past ? "": countdown(entry.jsdeadline).toString();
@@ -24,7 +25,7 @@
             <span class="">
                 &ZeroWidthSpace;
                 {#if entry.paperslink}
-                    <a title="Full List of Accepted Papers" href="{entry.paperslink}" target="_blank">F</a>
+                    <a title="Full List of Accepted Papers" href="{entry.paperslink}" target="_blank">📜</a>
                 {/if}
             </span>
         </div>
@@ -56,7 +57,16 @@
                     <span class="deadline-time"></span> {entry.deadline}
                 </div>
             </div>
-            <div class="">TODO</div>
+            {#if !entry.past}
+            <div class="">
+                <span>📅</span> 
+                <a href={google(entry)}>Google</a> ⋅
+                <a href={outlook(entry)}>Outlook</a> ⋅
+                <a href={office365(entry)}>Office 365</a> ⋅
+                <a href={yahoo(entry)}>yahoo</a> ⋅
+                <a href={ics(entry)}>iCal</a>
+            </div>
+            {/if}
         </div>
     </div>
 </div>
