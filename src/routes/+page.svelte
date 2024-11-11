@@ -8,9 +8,21 @@
 
 <div id="confs">
     <div id="coming_confs">
+        <div class="text-xl p-2"><b>Upcoming conferences</b></div>
         <ul>
         {#each data.entries as entry}
-        {#if entry.year >= year }
+        {#if entry.year >= year && !entry.past }
+            <Entry entry={entry} />
+        {/if}
+        {/each}
+        </ul>
+    </div>
+
+    <div id="past_confs" class="mt-8 border-t border-gray-800">
+        <div class="text-xl p-2"><b>Past conferences</b></div>
+        <ul>
+        {#each data.entries as entry}
+        {#if entry.year >= year && entry.past }
             <Entry entry={entry} />
         {/if}
         {/each}
