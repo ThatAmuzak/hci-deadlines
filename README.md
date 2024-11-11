@@ -1,5 +1,7 @@
 [![Deploy to GitHub Pages](https://github.com/ovi-lab/hci-deadlines/actions/workflows/svelte-gh-pages-deploy.yml/badge.svg)](https://github.com/ovi-lab/hci-deadlines/actions/workflows/svelte-gh-pages-deploy.yml)
 
+Website link: https://ovi-lab.github.io/hci-deadlines
+
 # sv
 
 Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).

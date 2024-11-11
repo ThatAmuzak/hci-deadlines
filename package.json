@@ -24,7 +24,8 @@
 	},
 	"dependencies": {
 		"@types/js-yaml": "^4.0.9",
-		"countdown": "^2.6.0",
+		"calendar-link": "^2.7.0",
+		"countdown": "git://github.com/mckamey/countdownjs.git#1902fb23d21d84958b302c117fe472634a5bcf52",
 		"js-yaml": "^4.1.0"
 	}
 }
