@@ -1,15 +1,26 @@
 import yaml from 'js-yaml';
-import rawEntries from "../../data/conferences.yml?raw";
 
-export function getAllEntries() {
+export async function getAllEntries() {
     let now:Date = new Date();
-    let entries = yaml.load(rawEntries)
-                      .map((entry:any) => ({
-                          ...entry,
-                          jsdeadline: new Date(entry.deadline),
-                          past: new Date(entry.deadline) < now,
-                          location: entry.place
-                      }))
-                      .sort((a:any, b:any) => a.jsdeadline < b.jsdeadline ? -1: 1);
+    const allFiles = import.meta.glob('/conf-database/conferences/*.yml' , {
+        query: '?raw',
+        import: 'default',
+    });
+
+    let entries = Promise.all(
+        Object.entries(allFiles)
+            .map(async ([path, resolver]) => {
+                const content = await resolver();
+                return yaml.load(content);
+            })
+    ).then(entries => entries
+        .flat()
+        .map((entry: any) => ({
+            ...entry,
+            jsdeadline: new Date(entry.deadline),
+            past: new Date(entry.deadline) < now,
+            location: entry.place
+        }))
+        .sort((a: any, b: any) => a.jsdeadline < b.jsdeadline ? -1 : 1));
     return { entries };
 }

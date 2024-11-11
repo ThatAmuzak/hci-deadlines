@@ -4,17 +4,16 @@
  
  let { data }: { data: PageData } = $props();
  let year = new Date('2025-01-31').getFullYear();
- let years = [... new Set(data.entries
-                              .filter(({ past }) => past)
-                              .map(({ jsdeadline }) => jsdeadline.getFullYear()))]
-         .sort().reverse()
+
 </script>
 
+{#await data.entries then entries}
+{#await data.years then years}
 <div id="confs">
     <div id="coming_confs">
         <div class="text-xl p-2"><b>Upcoming conference deadlines</b></div>
         <ul>
-        {#each data.entries as entry}
+        {#each entries as entry}
         {#if !entry.past }
             <li><Entry entry={entry} /></li>
         {/if}
@@ -27,7 +26,7 @@
         {#each years as _year}
             <div class="text-base font-bold pl-2"><b>Deadline in {_year}</b></div>
             <ul>
-            {#each data.entries as entry}
+            {#each entries as entry}
             {#if entry.jsdeadline.getFullYear() == _year && entry.past }
                 <li><Entry entry={entry} /></li>
             {/if}
@@ -36,3 +35,5 @@
         {/each}
     </div>
 </div>
+{/await}
+{/await}
