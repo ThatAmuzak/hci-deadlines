@@ -2,7 +2,7 @@
 
 Website link: https://ovi-lab.github.io/hci-deadlines
 
-This is a based on [hci-deadlines.github.io](https://github.com/hci-deadlines/hci-deadlines.github.io.), but uses the same data source ([conf-database](https://github.com/ovi-lab/conf-database)). See [conf-database](https://github.com/ovi-lab/conf-database).
+This is a based on [hci-deadlines.github.io](https://github.com/hci-deadlines/hci-deadlines.github.io), but uses the same data source ([conf-database](https://github.com/ovi-lab/conf-database)). See [conf-database](https://github.com/ovi-lab/conf-database).
 
 # Svelete development
 ## Developing

@@ -9,6 +9,10 @@
 
 {#await data.entries then entries}
 {#await data.years then years}
+<div>
+    <p>This is a fork of <a href="https://github.com/ovi-lab/hci-deadlines">github.com/ovi-lab/hci-deadlines</a>.</p>
+    <p>To add/edit any deadlines in this goto: <a href="https://github.com/ovi-lab/hci-deadlines">github.com/ovi-lab/hci-deadlines</a>.</p>
+</div>
 <div id="confs">
     <div id="coming_confs">
         <div class="text-xl p-2"><b>Upcoming conference deadlines</b></div>
