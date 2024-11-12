@@ -42,7 +42,7 @@
         </div>
     </div>
     <div class="w-full md:w-1/2">
-        <div class="timer text-base underline">
+        <div class="timer text-base font-semibold">
             <span>{countdownStr}</span>
         </div>
         <div class="text-sm">
