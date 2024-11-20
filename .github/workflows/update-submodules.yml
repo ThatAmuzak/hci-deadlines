@@ -11,6 +11,9 @@ jobs:
   # This workflow contains a single job called "update"
   update:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -21,10 +24,14 @@ jobs:
           git submodule update --init --recursive
           git submodule update --recursive --remote
 
-      - name: Commit & push changes
+      - name: Commit
         run: |
           git config user.email "actions@github.com"
           git config user.name "GitHub Actions - update submodules"
           git add --all
           git commit -m "Update submodules" || echo "No changes to commit"
-          git push
+      # See https://github.com/orgs/community/discussions/25702 why this is necessary!
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.PAT }}
