@@ -54,7 +54,7 @@
             {/if}
             <div class="">
                 <div><b>Deadline:</b>
-                    <span class="deadline-time"></span> {entry.deadline}
+                    {entry.deadline}{entry.timezone ? ` (${entry.timezone})`: ""}
                 </div>
             </div>
             {#if !entry.past}

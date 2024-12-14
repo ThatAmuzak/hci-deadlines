@@ -17,7 +17,7 @@ export async function getAllEntries() {
         .flat()
         .map((entry: any) => ({
             ...entry,
-            jsdeadline: new Date(entry.deadline),
+            jsdeadline: new Date(entry.deadline + (entry.timezone ? entry.timezone.replace("UTC", ""): "")),
             past: new Date(entry.deadline) < now,
             location: entry.place
         }))
