@@ -1,12 +1,31 @@
-name: Deploy to GitHub Pages
+name: Update submodules and deploy gh
 
+# Convinet workflow to update the submodule and deploy in one go
+
+# Controls when the action will run.
 on:
-  push:
-    branches: 'master'
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 jobs:
+  update_submodule:
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: Pull & update submodules recursively
+        run: |
+          git submodule update --init --recursive
+          git submodule update --recursive --remote
+
+      - name: Commit & push changes
+        run: |
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions - update submodules"
+          git add --all
+          git commit -m "Update submodules" || echo "No changes to commit"
+          git push
+
   build_site:
     runs-on: ubuntu-latest
     steps:
